@@ -1,0 +1,9 @@
+.searchBtn {
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+
+  &:active {
+    transform: scale(95%);
+  }
+}

@@ -1,0 +1,53 @@
+@import '../../styles/colors.scss';
+
+.modalWrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #e5e5e594;
+
+  & .modal {
+    position: relative;
+    padding: 20px;
+    background-color: $white;
+    border-radius: 10px;
+
+    &__closeBtn {
+      position: absolute;
+      top: -15px;
+      right: -15px;
+      height: 17px;
+      width: 17px;
+      border-radius: 5px;
+      background-color: $white;
+      cursor: pointer;
+
+      &::after {
+        position: absolute;
+        content: '';
+        top: 8px;
+        right: 2px;
+        width: 12px;
+        height: 1px;
+        background-color: $green;
+        transform: rotate(45deg);
+      }
+
+      &::before {
+        position: absolute;
+        content: '';
+        top: 8px;
+        right: 2px;
+        width: 12px;
+        height: 1px;
+        background-color: $green;
+        transform: rotate(-45deg);
+      }
+    }
+  }
+}
