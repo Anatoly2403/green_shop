@@ -1,1 +1,1 @@
-export * from './SearchBtn'
+export { default } from './SearchBtn';

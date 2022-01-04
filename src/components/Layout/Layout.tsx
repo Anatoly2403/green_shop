@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+
 import MainHeader from '../MainHeader';
 import Modal from '../Modal';
 
@@ -11,7 +12,6 @@ const Layout: FC = ({ children }) => {
         <MainHeader />
         <div className={classes.layout__container}>{children}</div>
       </div>
-
       <Modal />
     </>
   );

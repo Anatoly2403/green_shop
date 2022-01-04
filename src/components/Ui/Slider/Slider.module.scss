@@ -1,0 +1,51 @@
+@import '../../../styles/colors.scss';
+
+.slider__wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .slider {
+    position: relative;
+    display: flex;
+    align-items: center;
+    min-height: 450px;
+    overflow: hidden;
+
+    &__track {
+      height: 100%;
+      display: flex;
+      list-style: none;
+      transition: all ease 1s;
+    }
+
+    &__item {
+      width: 100%;
+      min-width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    &__dots {
+      width: 100%;
+
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+    }
+
+    &__dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: $transparentGreen;
+      cursor: pointer;
+
+      &_active {
+        background-color: $green;
+      }
+    }
+  }
+}

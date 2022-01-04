@@ -1,4 +1,4 @@
-import { action, makeAutoObservable, observable } from 'mobx';
+import { makeAutoObservable } from 'mobx';
 import { ReactElement } from 'react';
 
 interface IModalState {
@@ -15,11 +15,7 @@ const initialState = {
 
 export default class ModalStore {
   constructor(public state: IModalState = initialState) {
-    makeAutoObservable(this, {
-      state: observable,
-      onClose: action.bound,
-      createModal: action.bound,
-    });
+    makeAutoObservable(this, {}, { autoBind: true });
   }
 
   createModal({

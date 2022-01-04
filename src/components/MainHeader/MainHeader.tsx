@@ -3,12 +3,12 @@ import classes from './MainHeader.module.scss';
 import { ReactComponent as Logo } from '../../assets/icons/Logo.svg';
 import { ReactComponent as Logout } from '../../assets/icons/Logout.svg';
 import { NavLink } from 'react-router-dom';
-import CartBtn from '../Ui/CartBtn/CartBtn';
-import SearchBtn from '../Ui/SearchBtn/SearchBtn';
-import Button from '../Ui/Button/Button';
+import CartBtn from '../ui/CartBtn/CartBtn';
+import SearchBtn from '../ui/SearchBtn/SearchBtn';
+import Button from '../ui/Button/Button';
 import { modalStore } from '../../store';
 
-export const MainHeader: FC = () => {
+const MainHeader: FC = () => {
   const createModal = () => {
     modalStore.createModal({ component: <div>Привет мир</div> });
   };
@@ -45,3 +45,5 @@ export const MainHeader: FC = () => {
     </div>
   );
 };
+
+export default MainHeader;

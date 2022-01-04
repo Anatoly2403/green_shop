@@ -23,7 +23,7 @@ const Button: FC<BtnProps> = ({
       {...props}
     >
       {icon}
-      {label}
+      <span>{label}</span>
     </button>
   );
 };
