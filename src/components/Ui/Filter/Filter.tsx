@@ -6,7 +6,7 @@ import { Range, RangeProps } from '../Range';
 interface FilterProps {
   filterProps: FilterParams[];
   range?: RangeProps;
-  applyFilter?: (filter: string) => void;
+  applyFilter?: (filter: string, category: string) => void;
 }
 
 interface State {
@@ -33,9 +33,9 @@ const Filter: FC<FilterProps> = ({ filterProps, range, applyFilter }) => {
     );
   }, [filterProps]);
 
-  const handleFilter = (id: string, key: string) => {
-    setActive({ ...active, [key]: id });
-    if (applyFilter) applyFilter(key);
+  const handleFilter = (id: string, key: string, category: string) => {
+    setActive({ ...active, [category]: id });
+    if (applyFilter) applyFilter(key, category);
   };
 
   return (
@@ -50,7 +50,7 @@ const Filter: FC<FilterProps> = ({ filterProps, range, applyFilter }) => {
                 className={cn(
                   active[item.title] === id && classes.filter__paramList_active
                 )}
-                onClick={() => handleFilter(id, item.title)}
+                onClick={() => handleFilter(id, label, item.title)}
               >
                 {label}
               </li>

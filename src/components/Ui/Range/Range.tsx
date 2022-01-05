@@ -58,7 +58,7 @@ export const Range: FC<RangeProps> = ({
 
       if (active !== event.target.name) setActive(event.target.name);
     },
-    [min, max, applyRangeFilter]
+    [applyRangeFilter, active, minValue, maxValue]
   );
 
   useEffect(() => {

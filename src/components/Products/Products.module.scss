@@ -2,4 +2,8 @@
   width: 100%;
   display: flex;
   gap: 54px;
+
+  &__filter {
+    min-width: 220px;
+  }
 }

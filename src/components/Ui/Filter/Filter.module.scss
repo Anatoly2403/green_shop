@@ -28,6 +28,7 @@
       line-height: 40px;
       cursor: pointer;
       transition: text-shadow 0.3s;
+      white-space: nowrap;
 
       &:hover {
         text-shadow: 0 0 0.65px $green, 0 0 0.65px $green;
