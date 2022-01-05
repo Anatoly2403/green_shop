@@ -20,6 +20,8 @@ export const Slide: FC<SlideProps> = ({ title, text, imgComponent }) => {
           <span> {lastWord}</span>
         </h2>
         <p>{text}</p>
+
+        {/* TODO удалить при если не понадобиться */}
         <Button
           className={classes.slide__btn}
           label='SHOP NOW'

@@ -6,14 +6,26 @@
   flex-direction: column;
   gap: 30px;
 
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
   &__tabContainer {
     display: flex;
     gap: 35px;
   }
 
+  &__sortContainer {
+    padding-bottom: 7px;
+    border-bottom: 2px solid transparent;
+  }
+
   &__tab {
     width: fit-content;
     cursor: pointer;
+    height: 100%;
     padding-bottom: 7px;
     border-bottom: 2px solid transparent;
 

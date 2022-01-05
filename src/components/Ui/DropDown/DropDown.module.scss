@@ -1,0 +1,39 @@
+@import '../../../styles/colors.scss';
+
+.dropDown {
+  position: relative;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  z-index: 2;
+
+  & > span {
+    text-shadow: 0 0 0.65px $green, 0 0 0.65px $green;
+    color: $green;
+    cursor: pointer;
+  }
+
+  &__options {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 12px 5px;
+    background-color: $white;
+    list-style: none;
+    z-index: 1;
+    box-shadow: 0px 24px 60px 20px $white;
+
+    & > li {
+      cursor: pointer;
+      white-space: nowrap;
+
+      &:hover {
+        text-shadow: 0 0 0.65px $green, 0 0 0.65px $green;
+        color: $green;
+      }
+    }
+  }
+}
