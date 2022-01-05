@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import classes from './MainHeader.module.scss';
+import classes from './Header.module.scss';
 import { ReactComponent as Logo } from '../../assets/icons/Logo.svg';
 import { ReactComponent as Logout } from '../../assets/icons/Logout.svg';
 import { NavLink } from 'react-router-dom';
@@ -8,7 +8,7 @@ import SearchBtn from '../ui/SearchBtn/SearchBtn';
 import Button from '../ui/Button/Button';
 import { modalStore } from '../../store';
 
-const MainHeader: FC = () => {
+const Header: FC = () => {
   const createModal = () => {
     modalStore.createModal({ component: <div>Привет мир</div> });
   };
@@ -46,4 +46,4 @@ const MainHeader: FC = () => {
   );
 };
 
-export default MainHeader;
+export default Header;

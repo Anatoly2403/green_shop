@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import classes from './Slide.module.scss';
-import Button from '../../ui/Button';
+import Button from '../../../components/ui/Button';
 
 export interface SlideProps {
   title: string;

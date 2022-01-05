@@ -1,10 +1,11 @@
 import React, { FC } from 'react';
-import { Slide, SlideProps } from '../../slides/greetingSlides';
-import Slider from '../../ui/Slider';
+import { Slide, SlideProps } from '../../features/slides/greetingSlides';
+import Slider from '../../components/ui/Slider';
 import classes from './Home.module.scss';
-import { Slide as SlideType } from '../../ui/Slider/Slider';
-import logo1 from '../../../assets/images/greetingImg_1.png';
-import logo2 from '../../../assets/images/greetingImg_2.png';
+import { Slide as SlideType } from '../../components/ui/Slider/Slider';
+import logo1 from '../../assets/images/greetingImg_1.png';
+import logo2 from '../../assets/images/greetingImg_2.png';
+import { Products } from '../../components/Products';
 
 interface Meta extends SlideProps {
   id: number;
@@ -31,17 +32,20 @@ const slideMeta = [
   },
 ];
 
+const products = [];
+
 const prepareSlides = (meta: Meta[]): SlideType[] =>
   meta.map(({ id, ...rest }) => ({ id, elem: <Slide {...rest} /> }));
 
-const Home: FC = () => {
+export const Home: FC = () => {
   return (
     <div className={classes.home}>
       <div className={classes.home__slider}>
         <Slider slides={prepareSlides(slideMeta)} autoScroll />
       </div>
+      <div className={classes.home__shop}>
+        <Products />
+      </div>
     </div>
   );
 };
-
-export default Home;

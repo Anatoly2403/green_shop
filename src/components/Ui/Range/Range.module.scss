@@ -1,0 +1,100 @@
+@import '../../../styles/colors.scss';
+
+.range {
+  &__title {
+    margin: 0;
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+
+  &__sliderWrapper {
+    position: relative;
+    display: flex;
+    width: 100px;
+    align-items: center;
+    height: 15px;
+    padding-left: 12px;
+  }
+
+  &__slider {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+
+    & > div {
+      border-radius: 3px;
+      height: 4px;
+      position: absolute;
+    }
+  }
+
+  &__track_outer {
+    background-color: $transparentGreen;
+    z-index: 1;
+    width: 100px;
+  }
+
+  &__track_inner {
+    background-color: $green;
+    z-index: 2;
+  }
+
+  &__thumb,
+  &__thumb::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  &__thumb::-webkit-slider-thumb {
+    background-color: $green;
+    border: 3px solid $white;
+    border-radius: 50%;
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    pointer-events: all;
+    position: relative;
+  }
+
+  &__thumb::-moz-range-thumb {
+    background-color: $green;
+    border: 3px solid $white;
+    border-radius: 50%;
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    pointer-events: all;
+    position: relative;
+  }
+
+  &__thumb {
+    pointer-events: none;
+    position: absolute;
+    height: 0;
+    width: 100%;
+    outline: none;
+    z-index: 3;
+
+    &_active {
+      z-index: 4;
+    }
+  }
+
+  &__total {
+    position: relative;
+    margin-left: 12px;
+    margin-top: 15px;
+    font-size: 15px;
+
+    & > div {
+      position: absolute;
+      top: 0;
+      left: 45px;
+      white-space: nowrap;
+      text-shadow: 0 0 0.65px $green, 0 0 0.65px $green;
+      color: $green;
+    }
+  }
+}
