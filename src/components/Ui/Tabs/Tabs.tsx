@@ -9,6 +9,7 @@ type Child =
 interface TabsProps {
   children: Child[];
   activeTab?: number;
+  sortComponent?: ReactElement | ReactNode;
 }
 
 export const Tab: FC<{ label: string; uniqKey: number }> = ({
@@ -17,7 +18,11 @@ export const Tab: FC<{ label: string; uniqKey: number }> = ({
   uniqKey,
 }) => <>{children}</>;
 
-export const Tabs: FC<TabsProps> = ({ children, activeTab = 0 }) => {
+export const Tabs: FC<TabsProps> = ({
+  children,
+  activeTab = 0,
+  sortComponent,
+}) => {
   const [active, setActive] = useState<number>(activeTab);
 
   const tabs = children.map((child) => (
@@ -37,7 +42,10 @@ export const Tabs: FC<TabsProps> = ({ children, activeTab = 0 }) => {
 
   return (
     <div className={classes.tabs}>
-      <div className={classes.tabs__tabContainer}>{tabs}</div>
+      <div className={classes.tabs__header}>
+        <div className={classes.tabs__tabContainer}>{tabs}</div>
+        <div className={classes.tabs__sortContainer}>{sortComponent}</div>
+      </div>
       <div className={classes.tabs__itemContent}>{content}</div>
     </div>
   );

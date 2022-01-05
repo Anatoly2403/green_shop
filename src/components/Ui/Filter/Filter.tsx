@@ -10,16 +10,16 @@ interface FilterProps {
 }
 
 interface State {
-  [key: string]: string | null;
+  [key: string]: number | null;
 }
 
 interface FilterItem {
-  id: string;
+  id: number;
   label: string;
 }
 
 interface FilterParams {
-  id: string;
+  id: number;
   title: string;
   list: FilterItem[];
 }
@@ -33,7 +33,7 @@ const Filter: FC<FilterProps> = ({ filterProps, range, applyFilter }) => {
     );
   }, [filterProps]);
 
-  const handleFilter = (id: string, key: string, category: string) => {
+  const handleFilter = (id: number, key: string, category: string) => {
     setActive({ ...active, [category]: id });
     if (applyFilter) applyFilter(key, category);
   };

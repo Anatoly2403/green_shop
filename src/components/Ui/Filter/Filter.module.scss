@@ -29,6 +29,7 @@
       cursor: pointer;
       transition: text-shadow 0.3s;
       white-space: nowrap;
+      text-transform: capitalize;
 
       &:hover {
         text-shadow: 0 0 0.65px $green, 0 0 0.65px $green;
@@ -41,5 +42,6 @@
     margin: 0;
     font-weight: bold;
     font-size: 18px;
+    text-transform: capitalize;
   }
 }
