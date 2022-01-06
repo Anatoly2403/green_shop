@@ -21,7 +21,10 @@ const Modal: FC = () => {
             style={{ width }}
             {...modalsAnimation}
           >
-            <div className={classes.modal__closeBtn} onClick={modalStore.onClose} />
+            <div
+              className={classes.modal__closeBtn}
+              onClick={modalStore.onClose}
+            />
             <div className={classes.modal__content}>{component}</div>
           </motion.div>
         </div>

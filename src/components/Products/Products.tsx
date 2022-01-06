@@ -99,7 +99,7 @@ export const Products: FC = () => {
   const rangeApplyFilter = (min: number, max: number) => {
     console.log(min, max);
   };
-  const applyFilter = (filter: string, category: string) => {
+  const applyFilter = (filter: string | null, category: string) => {
     console.log(filter, category);
   };
 

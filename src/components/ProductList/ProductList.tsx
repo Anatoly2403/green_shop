@@ -18,7 +18,7 @@ export const ProductList: FC<ProductListProps> = ({ products, onClick }) => {
   return (
     <div className={classes.productList}>
       {products.map((product) => (
-        <div>{product.name}</div>
+        <div key={product.id}>{product.name}</div>
       ))}
     </div>
   );
