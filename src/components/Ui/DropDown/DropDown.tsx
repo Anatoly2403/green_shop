@@ -1,4 +1,4 @@
-import React, { FC, useMemo, useState } from 'react';
+import React, { FC, useState } from 'react';
 import classes from './DropDown.module.scss';
 import { AnimatePresence, motion } from 'framer-motion';
 
@@ -32,22 +32,11 @@ export const DropDown: FC<DropDownProps> = ({ options, onSelect }) => {
   const handleSelect = (value: string, label: string) => {
     setSelected(label);
     if (onSelect) onSelect(value);
+    setVisible(false);
   };
 
-  const optionsWithDefault = useMemo<Option[]>(
-    () => [
-      { key: options.length, value: 'default', label: 'Default' },
-      ...options,
-    ],
-    [options]
-  );
-
   return (
-    <div
-      className={classes.dropDown}
-      onClick={() => setVisible(!visible)}
-      onBlur={() => setVisible(false)}
-    >
+    <div className={classes.dropDown} onClick={() => setVisible(!visible)}>
       <span>{selected}</span>
       <AnimatePresence>
         {visible && (
@@ -56,7 +45,7 @@ export const DropDown: FC<DropDownProps> = ({ options, onSelect }) => {
             layoutId='underline'
             {...dropDownAnimation}
           >
-            {optionsWithDefault.map((option) => (
+            {options.map((option) => (
               <motion.li
                 key={option.key}
                 {...dropDownItemAnimation}

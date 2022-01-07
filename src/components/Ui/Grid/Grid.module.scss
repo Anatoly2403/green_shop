@@ -1,0 +1,8 @@
+.grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 32% 32% 32%;
+  grid-gap: 70px 4%;
+  justify-items: center;
+  align-items: center;
+}

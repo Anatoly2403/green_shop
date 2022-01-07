@@ -2,6 +2,7 @@ import React, { FC, useEffect, useState } from 'react';
 import classes from './Filter.module.scss';
 import cn from 'classnames';
 import { Range, RangeProps } from '../Range';
+import { FilterParams } from '../../../typing';
 
 interface FilterProps {
   filterProps: FilterParams[];
@@ -13,18 +14,11 @@ interface State {
   [key: string]: number | null;
 }
 
-interface FilterItem {
-  id: number;
-  label: string;
-}
-
-interface FilterParams {
-  id: number;
-  title: string;
-  list: FilterItem[];
-}
-
-const Filter: FC<FilterProps> = ({ filterProps, range, applyFilter }) => {
+export const Filter: FC<FilterProps> = ({
+  filterProps,
+  range,
+  applyFilter,
+}) => {
   const [active, setActive] = useState<State>({});
 
   useEffect(() => {
@@ -66,9 +60,7 @@ const Filter: FC<FilterProps> = ({ filterProps, range, applyFilter }) => {
         </div>
       ))}
 
-      {range && <Range {...range} />}
+      {!!range?.min && !!range.max && <Range {...range} />}
     </div>
   );
 };
-
-export default Filter;

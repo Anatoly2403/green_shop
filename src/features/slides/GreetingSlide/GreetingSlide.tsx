@@ -1,14 +1,9 @@
 import React, { FC } from 'react';
-import classes from './Slide.module.scss';
+import classes from './GreetingSlide.module.scss';
 import Button from '../../../components/ui/Button';
+import { Slide } from '../../../typing';
 
-export interface SlideProps {
-  title: string;
-  text: string;
-  imgComponent: string;
-}
-
-export const Slide: FC<SlideProps> = ({ title, text, imgComponent }) => {
+export const GreetingSlide: FC<Slide> = ({ title, text, imgComponent }) => {
   const lastWord = title.split(' ').pop();
   const withoutLastWord = title.replace(String(lastWord), '');
   return (

@@ -8,7 +8,7 @@ const CartBtn: FC<{ count?: number; onClick?: () => void }> = ({
 }) => {
   return (
     <div className={classes.cartBtn} onClick={onClick}>
-      <Cart />
+      <Cart color='#000' />
       {count && <span className={classes.cartBtn__counter}>{count}</span>}
     </div>
   );

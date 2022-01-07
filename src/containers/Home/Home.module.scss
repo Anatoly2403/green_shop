@@ -17,9 +17,16 @@
     );
   }
 
-  &__shop {
+  &__products {
     width: 100%;
     display: flex;
-    justify-content: center;
+    gap: 54px;
+
+    & > div:nth-child(1) {
+      min-width: 220px;
+    }
+    & > div:nth-child(2) {
+      width: 100%;
+    }
   }
 }

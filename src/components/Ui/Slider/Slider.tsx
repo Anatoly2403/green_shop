@@ -2,7 +2,7 @@ import React, { FC, ReactElement, useEffect, useRef, useState } from 'react';
 import classes from './Slider.module.scss';
 import cn from 'classnames';
 
-export interface Slide {
+interface Slide {
   id: number;
   elem: ReactElement;
 }
@@ -12,7 +12,7 @@ interface SliderProps {
   autoScroll?: boolean;
 }
 
-const Slider: FC<SliderProps> = ({ slides, autoScroll = false }) => {
+export const Slider: FC<SliderProps> = ({ slides, autoScroll = false }) => {
   const [active, setActive] = useState<number>(0);
   const slider = useRef<HTMLDivElement>(null);
   const track = useRef<HTMLUListElement>(null);
@@ -63,5 +63,3 @@ const Slider: FC<SliderProps> = ({ slides, autoScroll = false }) => {
     </div>
   );
 };
-
-export default Slider;

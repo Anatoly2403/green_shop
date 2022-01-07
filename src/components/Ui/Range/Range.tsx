@@ -9,11 +9,9 @@ import React, {
 import classes from './Range.module.scss';
 import cn from 'classnames';
 import { debounce } from 'lodash';
+import { Range as BasicRangeProps } from '../../../typing';
 
-export interface RangeProps {
-  title?: string;
-  min: number;
-  max: number;
+export interface RangeProps extends BasicRangeProps {
   width?: number;
   applyRangeFilter?: (min: number, max: number) => void;
 }
@@ -25,14 +23,12 @@ const debouncedApplyFilter = debounce(
   (min: number, max: number, callback?: (min: number, max: number) => void) => {
     if (callback) callback(min, max);
   },
-
   600
 );
 
 export const Range: FC<RangeProps> = ({
-  title,
-  min,
-  max,
+  min = 0,
+  max = 100,
   width = 100,
   applyRangeFilter,
 }) => {
@@ -66,7 +62,7 @@ export const Range: FC<RangeProps> = ({
       const minPercent = getPercent(minValue, min, max);
       const maxPercent = getPercent(+maxThumb.current.value, min, max);
 
-      if (rangeLine.current) {
+      if (rangeLine.current && minPercent >= 0 && maxPercent > 0) {
         rangeLine.current.style.left = `${minPercent}%`;
         rangeLine.current.style.width = `${maxPercent - minPercent}%`;
       }
@@ -78,7 +74,7 @@ export const Range: FC<RangeProps> = ({
       const minPercent = getPercent(+minThumb.current.value, min, max);
       const maxPercent = getPercent(maxValue, min, max);
 
-      if (rangeLine.current) {
+      if (rangeLine.current && minPercent >= 0 && maxPercent > 0) {
         rangeLine.current.style.width = `${maxPercent - minPercent}%`;
       }
     }
@@ -86,7 +82,7 @@ export const Range: FC<RangeProps> = ({
 
   return (
     <div className={classes.range}>
-      <div className={classes.range__title}>{title}</div>
+      <div className={classes.range__title}>Price Range</div>
       <div className={classes.range__sliderWrapper} style={{ width }}>
         <input
           ref={minThumb}

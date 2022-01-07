@@ -1,13 +1,10 @@
 import React, { FC } from 'react';
+import { SorterOption } from '../../../typing';
 import { DropDown } from '../DropDown';
 import classes from './Sorter.module.scss';
 
 interface SorterProps {
-  sortList: Array<{
-    key: number;
-    value: string;
-    label: string;
-  }>;
+  sortList: SorterOption[];
   onClick?: (value: string) => void;
 }
 
