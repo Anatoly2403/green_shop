@@ -1,8 +1,27 @@
 @import '../assets/fonts/stylesheet.scss';
+@import './colors.scss';
 
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
   font-family: 'Cera Pro', sans-serif;
+  scrollbar-width: thin;
+  scrollbar-color: $transparentGreen transparent;
+}
+
+body {
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: $transparentGreen;
+    border-radius: 20px;
+    border: none;
+  }
 }

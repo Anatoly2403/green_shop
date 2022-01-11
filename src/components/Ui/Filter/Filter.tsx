@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useState } from 'react';
 import classes from './Filter.module.scss';
 import cn from 'classnames';
 import { Range, RangeProps } from '../Range';
@@ -7,7 +7,7 @@ import { FilterParams } from '../../../typing';
 interface FilterProps {
   filterProps: FilterParams[];
   range?: RangeProps;
-  applyFilter?: (filter: string | null, category: string) => void;
+  applyFilter?: (category: string, subCategory?: string) => void;
 }
 
 interface State {
@@ -21,21 +21,17 @@ export const Filter: FC<FilterProps> = ({
 }) => {
   const [active, setActive] = useState<State>({});
 
-  useEffect(() => {
-    filterProps.forEach(({ title }) =>
-      setActive((prev) => ({ ...prev, [title]: null }))
-    );
-  }, [filterProps]);
-
   const handleFilter = (id: number, key: string, category: string) => {
     if (id !== active[category]) {
       setActive({ ...active, [category]: id });
-      if (applyFilter) applyFilter(key, category);
+      if (applyFilter) applyFilter(category, key);
     } else {
       setActive({ ...active, [category]: null });
-      if (applyFilter) applyFilter(null, category);
+      if (applyFilter) applyFilter(category);
     }
   };
+
+  console.log(active);
 
   return (
     <div className={classes.filter}>
