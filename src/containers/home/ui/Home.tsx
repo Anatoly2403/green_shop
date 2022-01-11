@@ -63,8 +63,6 @@ export const Home: FC = observer(() => {
           ({ price }) => price >= priceRange.min && price <= priceRange.max
         );
 
-    console.log(filter);
-
     const withFilter = !filter
       ? withRange
       : (lodashFilter(withRange, filter) as Product[]);
