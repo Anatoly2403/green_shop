@@ -1,18 +1,17 @@
 import React, { FC, useState } from 'react';
-import classes from './ProductCard.module.scss';
-import { ReactComponent as ImageNotFound } from '../../assets/icons/ImageNotFound.svg';
-import { ReactComponent as Like } from '../../assets/icons/Like.svg';
-import { ReactComponent as Cart } from '../../assets/icons/Cart.svg';
-import { ReactComponent as Search } from '../../assets/icons/Search.svg';
+import classes from './ProductItem.module.scss';
+import { ReactComponent as ImageNotFound } from '../../../../assets/icons/ImageNotFound.svg';
+import { ReactComponent as Like } from '../../../../assets/icons/Like.svg';
+import { ReactComponent as Cart } from '../../../../assets/icons/Cart.svg';
+import { ReactComponent as Search } from '../../../../assets/icons/Search.svg';
 import { motion } from 'framer-motion';
-import { Product } from '../../typing';
-import { withPercent } from '../../utils';
+import { Product } from '../../../../typing';
 
 export interface ProductProps extends Product {
   onClick?: (id: number) => void;
 }
 
-export const ProductCard: FC<ProductProps> = ({
+export const ProductItem: FC<ProductProps> = ({
   id,
   image,
   name,

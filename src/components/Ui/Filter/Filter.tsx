@@ -31,8 +31,6 @@ export const Filter: FC<FilterProps> = ({
     }
   };
 
-  console.log(active);
-
   return (
     <div className={classes.filter}>
       {filterProps.map((item) => (

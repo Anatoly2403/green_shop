@@ -1,21 +1,39 @@
 import React, { FC, useEffect, useMemo } from 'react';
-import { filter as lodashFilter } from 'lodash';
-import { GreetingSlide } from '../../features/slides/GreetingSlide';
-import { Slider } from '../../components/ui/Slider';
+import { filter as lodashFilter, maxBy, minBy, uniqBy } from 'lodash';
+import { GreetingSlide } from '../../../features/slides/GreetingSlide';
+import { Slider } from '../../../components/ui/Slider';
 import classes from './Home.module.scss';
-import { Product, Slide } from '../../typing';
+import { FilterCategories, Product, Slide } from '../../../typing';
 import { observer } from 'mobx-react';
-import { homePageStore } from '../../store';
-import { Filter } from '../../components/ui/Filter';
-import { Tab, Tabs } from '../../components/ui/Tabs';
-import { Sorter } from '../../components/ui/Sorter';
-import { Grid } from '../../components/ui/Grid';
-import { ProductCard } from '../../components/ProductCard';
-import { sorterOptions } from '../../mock';
-import { sorter } from '../../utils';
+import { homePageStore } from '../../../store';
+import { Filter } from '../../../components/ui/Filter';
+import { Tab, Tabs } from '../../../components/ui/Tabs';
+import { Sorter } from '../../../components/ui/Sorter';
+import { Grid } from '../../../components/ui/Grid';
+import { ProductItem } from '../components/ProductItem';
+import { sorterOptions } from '../../../mock';
+import { sorter } from '../../../utils';
 
 const prepareSlides = (meta: Slide[]) =>
   meta.map((item) => ({ id: item.id, elem: <GreetingSlide {...item} /> }));
+
+const preparePriceRangeData = (products: Product[]) => ({
+  min: minBy(products, 'price')?.price! || 0,
+  max: maxBy(products, 'price')?.price || 0,
+});
+
+const prepareFilterData = (
+  filterTypes: FilterCategories,
+  products: Product[]
+) => {
+  return filterTypes.map((item, i) => ({
+    id: i,
+    title: item,
+    list: uniqBy(products, item)
+      .map((product) => product[item])
+      .map((filter, i) => ({ id: i, label: filter })),
+  }));
+};
 
 export const Home: FC = observer(() => {
   const {
@@ -23,16 +41,14 @@ export const Home: FC = observer(() => {
     setFilter,
     setSort,
     setPriceRange,
+    getFilterTypes,
     setProductId,
     init,
-    preparePriceRangeData,
-    prepareFilterData,
-    setFilterTypes,
   } = homePageStore;
 
   const { products, slides, sort, filter, priceRange } = state;
+  const filterTypes = getFilterTypes();
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => init(), []);
 
   const filteredProducts = useMemo(() => {
@@ -50,15 +66,15 @@ export const Home: FC = observer(() => {
     return ranged;
   }, [products, sort, priceRange]);
 
-  const filterProps = useMemo(() => prepareFilterData(), [prepareFilterData]);
-  const rangeProps = useMemo(
-    () => preparePriceRangeData(),
-    [preparePriceRangeData]
+  const filterProps = useMemo(
+    () => prepareFilterData(filterTypes, products),
+    [products, filterTypes]
   );
+  
+  const rangeProps = useMemo(() => preparePriceRangeData(products), [products]);
 
   return (
     <div className={classes.home}>
-      <button onClick={setFilterTypes}>+</button>
       <div className={classes.home__slider}>
         {slides && <Slider slides={prepareSlides(slides)} autoScroll />}
       </div>
@@ -82,14 +98,14 @@ export const Home: FC = observer(() => {
             <Tab label='All Plants' uniqKey={0}>
               <Grid<Product>
                 list={filteredProducts}
-                renderComponent={ProductCard}
+                renderComponent={ProductItem}
                 onClick={setProductId}
               />
             </Tab>
             <Tab label='New Arrivals' uniqKey={1}>
               <Grid<Product>
                 list={lodashFilter(filteredProducts, 'newArrivals')}
-                renderComponent={ProductCard}
+                renderComponent={ProductItem}
                 onClick={setProductId}
               />
             </Tab>
@@ -99,7 +115,7 @@ export const Home: FC = observer(() => {
                   filteredProducts,
                   ({ salePercent }) => !!salePercent
                 )}
-                renderComponent={ProductCard}
+                renderComponent={ProductItem}
                 onClick={setProductId}
               />
             </Tab>

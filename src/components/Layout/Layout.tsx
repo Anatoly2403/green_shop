@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 
-import MainHeader from '../../components/Header';
-import Modal from '../../components/Modal';
+import MainHeader from '../Header';
+import Modal from '../Modal';
 
 import classes from './Layout.module.scss';
 

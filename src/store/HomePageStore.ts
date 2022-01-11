@@ -2,7 +2,6 @@ import { makeAutoObservable, reaction, toJS } from 'mobx';
 import { FilterCategories, Product, Range, Slide } from '../typing';
 import { slides, products } from '../mock';
 import { withPercent } from '../utils';
-import { maxBy, minBy, uniqBy } from 'lodash';
 
 const initialStore = {
   products: [],
@@ -13,7 +12,7 @@ const initialStore = {
 type A = 'salePercent' | 'newArrivals' | 'price' | 'id';
 
 export default class HomePageStore {
-  private filterTypes = ['categories', 'size'];
+  private filterTypes: FilterCategories = ['categories', 'size'];
   state: {
     products: Product[];
     slides: Slide[];
@@ -36,6 +35,8 @@ export default class HomePageStore {
     );
   }
 
+  getFilterTypes = () => this.filterTypes;
+  
   setProducts = (products: Product[]) => {
     this.state.products = products.map((item) => ({
       ...item,
@@ -59,25 +60,8 @@ export default class HomePageStore {
   setPriceRange = (min: number, max: number) =>
     (this.state.priceRange = { min, max });
 
-  preparePriceRangeData = () => ({
-    min: minBy(products, 'price')?.price! || 0,
-    max: maxBy(products, 'price')?.price || 0,
-  });
-
-  prepareFilterData = () => {
-    return this.filterTypes.map((item, i) => ({
-      id: i,
-      title: item,
-      list: uniqBy(products, item)
-        .map((product) => product[item as keyof Omit<Product, A>])
-        .map((filter, i) => ({ id: i, label: filter })),
-    }));
-  };
-
   init = () => {
     this.setProducts(products);
     this.setSlides(slides);
   };
-
-  setFilterTypes = () => this.filterTypes.push('name');
 }
