@@ -52,26 +52,35 @@ export const Home: FC = observer(() => {
   useEffect(() => init(), []);
 
   const filteredProducts = useMemo(() => {
-    const sorted = !sort
+    const withSort = !sort
       ? products
       : sorter(products, 'price', sort as 'asc' | 'dec');
 
-    const ranged = !(priceRange?.max && priceRange?.min)
-      ? sorted
+    const withRange = !(priceRange?.max && priceRange?.min)
+      ? withSort
       : lodashFilter(
-          sorted,
+          withSort,
           ({ price }) => price >= priceRange.min && price <= priceRange.max
         );
 
-    return ranged;
-  }, [products, sort, priceRange]);
+    console.log(filter);
+
+    const withFilter = !filter
+      ? withRange
+      : (lodashFilter(withRange, filter) as Product[]);
+
+    return withFilter;
+  }, [products, sort, priceRange, filter]);
 
   const filterProps = useMemo(
     () => prepareFilterData(filterTypes, products),
     [products, filterTypes]
   );
-  
-  const rangeProps = useMemo(() => preparePriceRangeData(products), [products]);
+
+  const rangeProps = useMemo(
+    () => preparePriceRangeData(filteredProducts),
+    [filteredProducts]
+  );
 
   return (
     <div className={classes.home}>

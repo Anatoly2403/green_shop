@@ -58,6 +58,11 @@ export const Range: FC<RangeProps> = ({
   );
 
   useEffect(() => {
+    setMinValue(min);
+    setMaxValue(max);
+  }, [min, max]);
+
+  useEffect(() => {
     if (maxThumb.current) {
       const minPercent = getPercent(minValue, min, max);
       const maxPercent = getPercent(+maxThumb.current.value, min, max);
