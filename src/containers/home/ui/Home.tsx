@@ -5,7 +5,7 @@ import { Slider } from '../../../components/ui/Slider';
 import classes from './Home.module.scss';
 import { FilterCategories, Product, Slide } from '../../../typing';
 import { observer } from 'mobx-react';
-import { homePageStore } from '../../../store';
+import { homePageStore as store } from '../../../store';
 import { Filter } from '../../../components/ui/Filter';
 import { Tab, Tabs } from '../../../components/ui/Tabs';
 import { Sorter } from '../../../components/ui/Sorter';
@@ -36,18 +36,9 @@ const prepareFilterData = (
 };
 
 export const Home: FC = observer(() => {
-  const {
-    state,
-    setFilter,
-    setSort,
-    setPriceRange,
-    getFilterTypes,
-    setProductId,
-    init,
-  } = homePageStore;
-
-  const { products, slides, sort, filter, priceRange } = state;
-  const filterTypes = getFilterTypes();
+  const { setFilter, setSort, setPriceRange, setProductId, init } = store;
+  const { products, slides, sort, filter, priceRange } = store.state;
+  const filterTypes = store.getFilterTypes();
 
   useEffect(() => init(), []);
 
@@ -70,16 +61,6 @@ export const Home: FC = observer(() => {
     return withFilter;
   }, [products, sort, priceRange, filter]);
 
-  const filterProps = useMemo(
-    () => prepareFilterData(filterTypes, products),
-    [products, filterTypes]
-  );
-
-  const rangeProps = useMemo(
-    () => preparePriceRangeData(filteredProducts),
-    [filteredProducts]
-  );
-
   return (
     <div className={classes.home}>
       <div className={classes.home__slider}>
@@ -88,10 +69,10 @@ export const Home: FC = observer(() => {
       <div className={classes.home__products}>
         <div>
           <Filter
-            filterProps={filterProps}
+            filterProps={prepareFilterData(filterTypes, products)}
             applyFilter={setFilter}
             range={{
-              ...rangeProps,
+              ...preparePriceRangeData(filteredProducts),
               applyRangeFilter: setPriceRange,
             }}
           />
