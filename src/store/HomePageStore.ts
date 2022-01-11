@@ -9,8 +9,6 @@ const initialStore = {
   sort: 'default',
 };
 
-type A = 'salePercent' | 'newArrivals' | 'price' | 'id';
-
 export default class HomePageStore {
   private filterTypes: FilterCategories = ['categories', 'size'];
   state: {
@@ -36,7 +34,7 @@ export default class HomePageStore {
   }
 
   getFilterTypes = () => this.filterTypes;
-  
+
   setProducts = (products: Product[]) => {
     this.state.products = products.map((item) => ({
       ...item,
