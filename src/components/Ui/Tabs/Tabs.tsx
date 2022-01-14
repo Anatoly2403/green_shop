@@ -11,6 +11,7 @@ interface TabsProps {
   children: Child[];
   activeTab?: number;
   sortComponent?: ReactElement | ReactNode;
+  onChangeTab?: (tabKey: number) => void;
 }
 
 export const Tab: FC<{ label: string; uniqKey: number }> = ({
@@ -23,8 +24,14 @@ export const Tabs: FC<TabsProps> = ({
   children,
   activeTab = 0,
   sortComponent,
+  onChangeTab,
 }) => {
   const [active, setActive] = useState<number>(activeTab);
+
+  const setActiveTab = (tabKey: number) => {
+    setActive(tabKey);
+    if (onChangeTab) onChangeTab(tabKey);
+  };
 
   const tabs = children.map((child) => (
     <div
@@ -33,7 +40,7 @@ export const Tabs: FC<TabsProps> = ({
         classes.tabs__tab,
         { [classes.tabs__tab_active]: active === child.props.uniqKey },
       ])}
-      onClick={() => setActive(child.props.uniqKey)}
+      onClick={() => setActiveTab(child.props.uniqKey)}
     >
       {child.props.label}
     </div>

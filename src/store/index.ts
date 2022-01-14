@@ -1,5 +1,7 @@
 import ModalStore from './ModalStore';
-import HomePageStore from './HomePageStore';
+import ProductStore from './ProductStore';
+import SliderStore from './SliderStore';
 
 export const modalStore = new ModalStore();
-export const homePageStore = new HomePageStore();
+export const productStore = new ProductStore();
+export const sliderStore = new SliderStore();
