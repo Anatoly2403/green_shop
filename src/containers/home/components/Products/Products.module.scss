@@ -1,0 +1,12 @@
+.products {
+  width: 100%;
+  display: flex;
+  gap: 54px;
+
+  & > div:nth-child(1) {
+    min-width: 220px;
+  }
+  & > div:nth-child(2) {
+    width: 100%;
+  }
+}

@@ -1,18 +1,13 @@
-import React, { FC, ReactElement, useEffect, useRef, useState } from 'react';
+import React, { ReactChild, useEffect, useRef, useState } from 'react';
 import classes from './Slider.module.scss';
 import cn from 'classnames';
 
-interface Slide {
-  id: number;
-  elem: ReactElement;
-}
-
 interface SliderProps {
-  slides: Slide[];
+  children: ReactChild[];
   autoScroll?: boolean;
 }
 
-export const Slider: FC<SliderProps> = ({ slides, autoScroll = false }) => {
+export const Slider = ({ autoScroll = false, children }: SliderProps) => {
   const [active, setActive] = useState<number>(0);
   const slider = useRef<HTMLDivElement>(null);
   const track = useRef<HTMLUListElement>(null);
@@ -29,36 +24,41 @@ export const Slider: FC<SliderProps> = ({ slides, autoScroll = false }) => {
 
     if (autoScroll) {
       intervalId = setInterval(
-        () => setActive((prev) => (prev === slides.length - 1 ? 0 : prev + 1)),
+        () =>
+          setActive((prev) => (prev === children.length - 1 ? 0 : prev + 1)),
         5000
       );
     }
-
     return () => clearInterval(intervalId);
-  }, [active, autoScroll, slides]);
+  }, [active, autoScroll, children]);
 
   return (
     <div className={classes.slider__wrapper}>
       <div ref={slider} className={classes.slider}>
         <ul ref={track} className={classes.slider__track}>
-          {slides.map((item) => (
-            <li key={item.id} className={classes.slider__item}>
-              {item.elem}
-            </li>
-          ))}
+          {children &&
+            children.map((item) => (
+              <li
+                key={(item as { key: number }).key}
+                className={classes.slider__item}
+              >
+                {item}
+              </li>
+            ))}
         </ul>
       </div>
       <div className={classes.slider__dots}>
-        {slides.map((item, i) => (
-          <div
-            key={item.id}
-            className={cn(
-              classes.slider__dot,
-              active === i && classes.slider__dot_active
-            )}
-            onClick={() => scrollSlider(i)}
-          />
-        ))}
+        {children &&
+          children.map((item, i) => (
+            <div
+              key={(item as { key: number }).key}
+              className={cn(
+                classes.slider__dot,
+                active === i && classes.slider__dot_active
+              )}
+              onClick={() => scrollSlider(i)}
+            />
+          ))}
       </div>
     </div>
   );
