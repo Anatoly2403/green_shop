@@ -1,28 +1,26 @@
-import { makeAutoObservable, reaction, toJS } from 'mobx';
-import { FilterCategories, Product, Range, Slide } from '../typing';
-import { slides, products } from '../mock';
-import { withPercent } from '../utils';
+import { makeAutoObservable } from "mobx";
+import { FilterCategories, Product, Range } from "../typing";
+import { sorter, withPercent } from "../utils";
+import { filter } from "lodash";
 
 export default class ProductStore {
-  private filterTypes: FilterCategories = ['categories', 'size'];
-  public products: Product[] = [];
-  public sort: string = 'default';
-  public filter?: { [category: string]: string };
-  public priceRange?: Range;
-  public productId?: number;
+  private filterTypes: FilterCategories = ["categories", "size"];
+  private products: Product[] = [];
+  private activeTabKey: number = 0;
+  private sort: string = "default";
+  private filter?: { [category: string]: string };
+  private priceRange?: Range;
+  private productId?: number;
 
   constructor() {
     makeAutoObservable(this, {}, { deep: true });
-    reaction(
-      () => ({
-        sort: this.sort,
-        filter: this.filter,
-        range: this.priceRange,
-        selectedProductId: this.productId,
-      }),
-      (state) => console.log(toJS(state))
-    );
   }
+
+  get stateProducts(): Product[] {
+    return this.products;
+  }
+
+  setActiveTabKey = (key: number) => (this.activeTabKey = key);
 
   getFilterTypes = () => this.filterTypes;
 
@@ -46,4 +44,46 @@ export default class ProductStore {
 
   setPriceRange = (min: number, max: number) =>
     (this.priceRange = { min, max });
+
+  private getProductWithRange = () => {
+    const withFilter = this.getProductWithFilter();
+    return withFilter.filter(({ price }) => {
+      if (this.priceRange && this.priceRange?.max && this.priceRange?.min) {
+        return price >= this.priceRange.min && price <= this.priceRange.max;
+      }
+      return true;
+    });
+  };
+
+  private getProductWithFilter = () => {
+    const withSort = this.getProductWithSort();
+    if (this.filter) {
+      return filter(withSort, filter) as Product[];
+    }
+    return withSort;
+  };
+
+  private getProductWithSort = () => {
+    const filteredByTab = this.getProductFilteredByTab();
+    if (this.sort) {
+      return sorter(filteredByTab, "price", this.sort as "asc" | "dec");
+    }
+    return filteredByTab;
+  };
+
+  private getProductFilteredByTab = () => {
+    return this.products.filter((product) => {
+      if (this.activeTabKey === 0) return true;
+      if (this.activeTabKey === 1) return product.newArrivals;
+      if (this.activeTabKey === 2) return !!product.salePercent;
+    });
+  };
+
+  get filteredProducts(): Product[] {
+    return this.getProductWithRange();
+  }
+
+  get productsWithFilter(): Product[] {
+    return this.getProductWithFilter();
+  }
 }

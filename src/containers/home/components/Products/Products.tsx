@@ -3,9 +3,8 @@ import { Filter } from '../../../../components/ui/Filter';
 import { Grid } from '../../../../components/ui/Grid';
 import { Tab, Tabs } from '../../../../components/ui/Tabs';
 import { FilterCategories, Product } from '../../../../typing';
-import { filter as lodashFilter, maxBy, minBy, uniqBy } from 'lodash';
+import { maxBy, minBy, uniqBy } from 'lodash';
 import classes from './Products.module.scss';
-import { sorter } from '../../../../utils';
 import { observer } from 'mobx-react';
 import { ProductItem } from '../ProductItem';
 import { sorterOptions } from '../../../../mock';
@@ -33,35 +32,20 @@ const prepareFilterData = (
 
 export const Products: FC = observer(() => {
   const {
-    products,
-    sort,
-    filter,
-    priceRange,
+    stateProducts: products,
     setFilter,
     setSort,
     setPriceRange,
     setProductId,
+    setActiveTabKey,
     setProducts,
+    productsWithFilter,
+    filteredProducts,
   } = store;
 
   const filterTypes = store.getFilterTypes();
 
   useEffect(() => setProducts(mockProducts), []);
-
-  const withSort = !sort
-    ? products
-    : sorter(products, 'price', sort as 'asc' | 'dec');
-
-  const withFilter = !filter
-    ? withSort
-    : (lodashFilter(withSort, filter) as Product[]);
-
-  const withRange = !(priceRange?.max && priceRange?.min)
-    ? withFilter
-    : lodashFilter(
-        withFilter,
-        ({ price }) => price >= priceRange.min && price <= priceRange.max
-      );
 
   return (
     <div className={classes.products}>
@@ -70,36 +54,33 @@ export const Products: FC = observer(() => {
           filterProps={prepareFilterData(filterTypes, products)}
           applyFilter={setFilter}
           range={{
-            ...preparePriceRangeData(withFilter),
+            ...preparePriceRangeData(productsWithFilter),
             applyRangeFilter: setPriceRange,
           }}
         />
       </div>
       <div>
         <Tabs
-          onChangeTab={(key) => console.log(key)}
+          onChangeTab={setActiveTabKey}
           sortComponent={<Sorter sortList={sorterOptions} onClick={setSort} />}
         >
           <Tab label='All Plants' uniqKey={0}>
             <Grid<Product>
-              list={withRange}
+              list={filteredProducts}
               renderComponent={ProductItem}
               onClick={setProductId}
             />
           </Tab>
           <Tab label='New Arrivals' uniqKey={1}>
             <Grid<Product>
-              list={lodashFilter(withRange, 'newArrivals')}
+              list={filteredProducts}
               renderComponent={ProductItem}
               onClick={setProductId}
             />
           </Tab>
           <Tab label='Sale' uniqKey={2}>
             <Grid<Product>
-              list={lodashFilter(
-                withRange,
-                ({ salePercent }) => !!salePercent
-              )}
+              list={filteredProducts}
               renderComponent={ProductItem}
               onClick={setProductId}
             />
