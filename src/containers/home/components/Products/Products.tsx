@@ -48,24 +48,20 @@ export const Products: FC = observer(() => {
 
   useEffect(() => setProducts(mockProducts), []);
 
-  const filteredProducts = useMemo(() => {
-    const withSort = !sort
-      ? products
-      : sorter(products, 'price', sort as 'asc' | 'dec');
+  const withSort = !sort
+    ? products
+    : sorter(products, 'price', sort as 'asc' | 'dec');
 
-    const withRange = !(priceRange?.max && priceRange?.min)
-      ? withSort
-      : lodashFilter(
-          withSort,
-          ({ price }) => price >= priceRange.min && price <= priceRange.max
-        );
+  const withFilter = !filter
+    ? withSort
+    : (lodashFilter(withSort, filter) as Product[]);
 
-    const withFilter = !filter
-      ? withRange
-      : (lodashFilter(withRange, filter) as Product[]);
-
-    return withFilter;
-  }, [products, sort, priceRange, filter]);
+  const withRange = !(priceRange?.max && priceRange?.min)
+    ? withFilter
+    : lodashFilter(
+        withFilter,
+        ({ price }) => price >= priceRange.min && price <= priceRange.max
+      );
 
   return (
     <div className={classes.products}>
@@ -74,7 +70,7 @@ export const Products: FC = observer(() => {
           filterProps={prepareFilterData(filterTypes, products)}
           applyFilter={setFilter}
           range={{
-            ...preparePriceRangeData(filteredProducts),
+            ...preparePriceRangeData(withFilter),
             applyRangeFilter: setPriceRange,
           }}
         />
@@ -86,14 +82,14 @@ export const Products: FC = observer(() => {
         >
           <Tab label='All Plants' uniqKey={0}>
             <Grid<Product>
-              list={filteredProducts}
+              list={withRange}
               renderComponent={ProductItem}
               onClick={setProductId}
             />
           </Tab>
           <Tab label='New Arrivals' uniqKey={1}>
             <Grid<Product>
-              list={lodashFilter(filteredProducts, 'newArrivals')}
+              list={lodashFilter(withRange, 'newArrivals')}
               renderComponent={ProductItem}
               onClick={setProductId}
             />
@@ -101,7 +97,7 @@ export const Products: FC = observer(() => {
           <Tab label='Sale' uniqKey={2}>
             <Grid<Product>
               list={lodashFilter(
-                filteredProducts,
+                withRange,
                 ({ salePercent }) => !!salePercent
               )}
               renderComponent={ProductItem}
