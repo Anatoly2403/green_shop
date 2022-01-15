@@ -16,8 +16,14 @@ export interface RangeProps extends BasicRangeProps {
   applyRangeFilter?: (min: number, max: number) => void;
 }
 
-const getPercent = (currentValue: number, min: number = 0, max: number = 100) =>
-  Math.round(((currentValue - min) / (max - min)) * 100);
+const getPercent = (
+  currentValue: number,
+  min: number = 0,
+  max: number = 100
+) => {
+  if (min === max) return 0;
+  return Math.round(((currentValue - min) / (max - min)) * 100);
+};
 
 const debouncedApplyFilter = debounce(
   (min: number, max: number, callback?: (min: number, max: number) => void) => {
@@ -67,7 +73,7 @@ export const Range: FC<RangeProps> = ({
       const minPercent = getPercent(minValue, min, max);
       const maxPercent = getPercent(+maxThumb.current.value, min, max);
 
-      if (rangeLine.current && minPercent >= 0 && maxPercent > 0) {
+      if (rangeLine.current) {
         rangeLine.current.style.left = `${minPercent}%`;
         rangeLine.current.style.width = `${maxPercent - minPercent}%`;
       }
@@ -79,7 +85,7 @@ export const Range: FC<RangeProps> = ({
       const minPercent = getPercent(+minThumb.current.value, min, max);
       const maxPercent = getPercent(maxValue, min, max);
 
-      if (rangeLine.current && minPercent >= 0 && maxPercent > 0) {
+      if (rangeLine.current) {
         rangeLine.current.style.width = `${maxPercent - minPercent}%`;
       }
     }
