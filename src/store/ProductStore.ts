@@ -58,7 +58,7 @@ export default class ProductStore {
   private getProductWithFilter = () => {
     const withSort = this.getProductWithSort();
     if (this.filter) {
-      return filter(withSort, filter) as Product[];
+      return filter(withSort, this.filter) as Product[];
     }
     return withSort;
   };

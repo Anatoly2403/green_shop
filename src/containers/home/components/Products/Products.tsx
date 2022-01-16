@@ -1,20 +1,20 @@
-import React, { FC, useEffect, useMemo } from 'react';
-import { Filter } from '../../../../components/ui/Filter';
-import { Grid } from '../../../../components/ui/Grid';
-import { Tab, Tabs } from '../../../../components/ui/Tabs';
-import { FilterCategories, Product } from '../../../../typing';
-import { maxBy, minBy, uniqBy } from 'lodash';
-import classes from './Products.module.scss';
-import { observer } from 'mobx-react';
-import { ProductItem } from '../ProductItem';
-import { sorterOptions } from '../../../../mock';
-import { Sorter } from '../../../../components/ui/Sorter';
-import { productStore as store } from '../../../../store';
-import { products as mockProducts } from '../../../../mock/';
+import React, { FC, useEffect } from "react";
+import { Filter } from "../../../../components/ui/Filter";
+import { Grid } from "../../../../components/ui/Grid";
+import { Tab, Tabs } from "../../../../components/ui/Tabs";
+import { FilterCategories, Product } from "../../../../typing";
+import { maxBy, minBy, uniqBy } from "lodash";
+import classes from "./Products.module.scss";
+import { observer } from "mobx-react";
+import { ProductItem } from "../ProductItem";
+import { sorterOptions } from "../../../../mock";
+import { Sorter } from "../../../../components/ui/Sorter";
+import { productStore as store } from "../../../../store";
+import { products as mockProducts } from "../../../../mock/";
 
 const preparePriceRangeData = (products: Product[]) => ({
-  min: minBy(products, 'price')?.price! || 0,
-  max: maxBy(products, 'price')?.price || 0,
+  min: minBy(products, "price")?.price! || 0,
+  max: maxBy(products, "price")?.price || 0,
 });
 
 const prepareFilterData = (
@@ -64,21 +64,21 @@ export const Products: FC = observer(() => {
           onChangeTab={setActiveTabKey}
           sortComponent={<Sorter sortList={sorterOptions} onClick={setSort} />}
         >
-          <Tab label='All Plants' uniqKey={0}>
+          <Tab label="All Plants" uniqKey={0}>
             <Grid<Product>
               list={filteredProducts}
               renderComponent={ProductItem}
               onClick={setProductId}
             />
           </Tab>
-          <Tab label='New Arrivals' uniqKey={1}>
+          <Tab label="New Arrivals" uniqKey={1}>
             <Grid<Product>
               list={filteredProducts}
               renderComponent={ProductItem}
               onClick={setProductId}
             />
           </Tab>
-          <Tab label='Sale' uniqKey={2}>
+          <Tab label="Sale" uniqKey={2}>
             <Grid<Product>
               list={filteredProducts}
               renderComponent={ProductItem}
