@@ -1,10 +1,10 @@
 import React, { FC, useEffect, useMemo } from "react";
 import classes from "./GreetingSlider.module.scss";
-import { ReactComponent as ImageNotFound } from "../../../../assets/icons/ImageNotFound.svg";
-import Button from "../../../../components/ui/Button";
-import { Slider } from "../../../../components/ui/Slider";
+import { ReactComponent as ImageNotFound } from "../../../assets/icons/ImageNotFound.svg";
+import Button from "../../../components/ui/Button";
+import { Slider } from "../../../components/ui/Slider";
 import { observer } from "mobx-react-lite";
-import { useStore } from "../../../../store";
+import { useStore } from "../../../store";
 
 export const GreetingSlider: FC = observer(() => {
   const { slides, fetchSlides } = useStore("sliderStore");

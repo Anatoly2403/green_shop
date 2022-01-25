@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { useStore } from "../../../../store";
+import { useStore } from "../../../store";
 import classes from "./ProductItem.module.scss";
 
 interface ProductCardProps {}

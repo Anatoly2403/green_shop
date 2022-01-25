@@ -1,11 +1,11 @@
 import React, { FC, useState } from "react";
 import classes from "./ProductItem.module.scss";
-import { ReactComponent as ImageNotFound } from "../../../../assets/icons/ImageNotFound.svg";
-import { ReactComponent as Like } from "../../../../assets/icons/Like.svg";
-import { ReactComponent as Cart } from "../../../../assets/icons/Cart.svg";
-import { ReactComponent as Search } from "../../../../assets/icons/Search.svg";
+import { ReactComponent as ImageNotFound } from "../../../assets/icons/ImageNotFound.svg";
+import { ReactComponent as Like } from "../../../assets/icons/Like.svg";
+import { ReactComponent as Cart } from "../../../assets/icons/Cart.svg";
+import { ReactComponent as Search } from "../../../assets/icons/Search.svg";
 import { motion } from "framer-motion";
-import { Product } from "../../../../typing";
+import { Product } from "../../../typing";
 
 export interface ProductProps extends Product {
   onDblClick?: (id: number) => void;

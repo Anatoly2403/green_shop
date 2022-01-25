@@ -1,21 +1,26 @@
 import React, { FC, useEffect } from "react";
-import { Filter } from "../../../../components/ui/Filter";
-import { Grid } from "../../../../components/ui/Grid";
-import { Tab, Tabs } from "../../../../components/ui/Tabs";
-import { FilterCategories, Product } from "../../../../typing";
+import { Filter } from "../../../components/ui/Filter";
+import { Grid } from "../../../components/ui/Grid";
+import { Tab, Tabs } from "../../../components/ui/Tabs";
+import { FilterCategories, Product } from "../../../typing";
 import { maxBy, minBy, uniqBy } from "lodash";
-import classes from "./ProductsList.module.scss";
+import classes from "./ProductList.module.scss";
 import { observer } from "mobx-react";
 import { ProductItem } from "../ProductItem";
-import { sorterOptions } from "../../../../mock";
-import { Sorter } from "../../../../components/ui/Sorter";
-import { useStore } from "../../../../store";
+import { Sorter } from "../../../components/ui/Sorter";
+import { useStore } from "../../../store";
 import { useNavigate } from "react-router-dom";
 
 const preparePriceRangeData = (products: Product[]) => ({
   min: minBy(products, "price")?.price! || 0,
   max: maxBy(products, "price")?.price || 0,
 });
+
+const sorterOptions = [
+  { key: 0, value: "default", label: "Default" },
+  { key: 1, label: "Descending price", value: "dec" },
+  { key: 2, label: "Ascending price", value: "asc" },
+];
 
 const prepareFilterData = (
   filterTypes: FilterCategories,
@@ -30,7 +35,7 @@ const prepareFilterData = (
   }));
 };
 
-export const ProductsList: FC = observer(() => {
+export const ProductList: FC = observer(() => {
   const {
     allProducts,
     productFilterTypes: filterTypes,
