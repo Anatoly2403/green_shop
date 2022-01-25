@@ -2,8 +2,10 @@ import { makeAutoObservable } from "mobx";
 import { FilterCategories, Product, Range } from "../typing";
 import { sorter, withPercent } from "../utils";
 import { filter } from "lodash";
+import { BaseApi } from "../api";
 
 export default class ProductStore {
+  public api = new BaseApi();
   private filterTypes: FilterCategories = ["categories", "size"];
   private products: Product[] = [];
   private activeTabKey: number = 0;
@@ -16,13 +18,19 @@ export default class ProductStore {
     makeAutoObservable(this, {}, { deep: true });
   }
 
-  get stateProducts(): Product[] {
+  get allProducts() {
     return this.products;
   }
 
-  setActiveTabKey = (key: number) => (this.activeTabKey = key);
+  get selectedProductId() {
+    return this.productId;
+  }
 
-  getFilterTypes = () => this.filterTypes;
+  get productFilterTypes() {
+    return this.filterTypes;
+  }
+
+  setActiveTabKey = (key: number) => (this.activeTabKey = key);
 
   setProducts = (products: Product[]) => {
     this.products = products.map((item) => ({
@@ -44,6 +52,11 @@ export default class ProductStore {
 
   setPriceRange = (min: number, max: number) =>
     (this.priceRange = { min, max });
+
+  fetchProducts = async () => {
+    const products = await this.api.getData("products");
+    this.setProducts(products.data);
+  };
 
   private getProductWithRange = () => {
     const withFilter = this.getProductWithFilter();

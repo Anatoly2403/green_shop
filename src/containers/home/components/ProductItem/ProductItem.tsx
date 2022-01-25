@@ -1,14 +1,14 @@
-import React, { FC, useState } from 'react';
-import classes from './ProductItem.module.scss';
-import { ReactComponent as ImageNotFound } from '../../../../assets/icons/ImageNotFound.svg';
-import { ReactComponent as Like } from '../../../../assets/icons/Like.svg';
-import { ReactComponent as Cart } from '../../../../assets/icons/Cart.svg';
-import { ReactComponent as Search } from '../../../../assets/icons/Search.svg';
-import { motion } from 'framer-motion';
-import { Product } from '../../../../typing';
+import React, { FC, useState } from "react";
+import classes from "./ProductItem.module.scss";
+import { ReactComponent as ImageNotFound } from "../../../../assets/icons/ImageNotFound.svg";
+import { ReactComponent as Like } from "../../../../assets/icons/Like.svg";
+import { ReactComponent as Cart } from "../../../../assets/icons/Cart.svg";
+import { ReactComponent as Search } from "../../../../assets/icons/Search.svg";
+import { motion } from "framer-motion";
+import { Product } from "../../../../typing";
 
 export interface ProductProps extends Product {
-  onClick?: (id: number) => void;
+  onDblClick?: (id: number) => void;
 }
 
 export const ProductItem: FC<ProductProps> = ({
@@ -17,7 +17,7 @@ export const ProductItem: FC<ProductProps> = ({
   name,
   price,
   salePercent,
-  onClick = () => {},
+  onDblClick = () => {},
 }) => {
   const [over, setOver] = useState<boolean>(false);
 
@@ -26,14 +26,14 @@ export const ProductItem: FC<ProductProps> = ({
       className={classes.product}
       onMouseEnter={() => setOver(true)}
       onMouseLeave={() => setOver(false)}
-      onClick={() => onClick(id)}
+      onDoubleClick={() => onDblClick(id)}
     >
       <div className={classes.product__imgContainer}>
-        <motion.div {...(over && { animate: { scale: 0.85, y: '-20px' } })}>
+        <motion.div {...(over && { animate: { scale: 0.85, y: "-20px" } })}>
           {image ? (
-            <img src={image} alt='product_img' />
+            <img src={require(image)} alt="product_img" />
           ) : (
-            <ImageNotFound color='#46a3584d' />
+            <ImageNotFound color="#46a3584d" />
           )}
         </motion.div>
 

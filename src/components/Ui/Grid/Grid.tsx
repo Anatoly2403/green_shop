@@ -3,20 +3,20 @@ import classes from './Grid.module.scss';
 
 interface GridProps<T> {
   list: T[];
-  onClick?: (id: number) => void;
+  onDblClick?: (id: number) => void;
   renderComponent: React.FC<T>;
 }
 
 export const Grid = <T extends { id: number }>({
   list,
-  onClick,
+  onDblClick,
   renderComponent: Component,
 }: GridProps<T>): ReactElement => {
   return (
     <div className={classes.grid}>
       {list.map((item) => (
         <React.Fragment key={item.id}>
-          <Component {...item} onClick={onClick} />
+          <Component {...item} onDblClick={onDblClick} />
         </React.Fragment>
       ))}
     </div>

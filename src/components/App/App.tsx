@@ -1,24 +1,24 @@
-import React, { FC } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Layout from '../Layout';
-import { Home } from '../../containers/home/ui';
-
-import { Shop } from '../../containers/shop/ui';
+import React, { FC } from "react";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import Layout from "../Layout";
+import { Home } from "../../containers/home/ui";
+import { ProductCard } from "../../containers/home/components/ProductCard";
 
 const App: FC = () => {
   return (
-    <div style={{ width: '100%' }}>
+    <div style={{ width: "100%" }}>
       <BrowserRouter>
         <Layout>
           <Routes>
-            <Route path='/' element={<Home />} />
-            <Route path='/shop' element={<Shop />} />
+            <Route path="/home" element={<Home />} />
+            <Route path="/home/:id" element={<ProductCard />} />
             <Route
-              path='/*'
+              path="/*"
               element={
-                <div style={{ textAlign: 'center' }}>Page not found</div>
+                <div style={{ textAlign: "center" }}>Page not found</div>
               }
             />
+            <Route path="/" element={<Navigate to="/home" replace />} />
           </Routes>
         </Layout>
       </BrowserRouter>
