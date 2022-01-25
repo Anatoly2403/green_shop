@@ -6,7 +6,7 @@ export interface Product {
   description: string;
   categories: string;
   size: string;
-  image: string;
+  image?: string;
   newArrivals: boolean;
   salePercent: number;
 }
@@ -20,7 +20,7 @@ export interface Slide {
   id: number;
   title: string;
   text: string;
-  imgComponent: string;
+  imgComponent?: string;
 }
 
 export interface SorterOption {

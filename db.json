@@ -1,0 +1,87 @@
+{
+  "products": [
+    {
+      "id": 0,
+      "name": "Barberton Daisy",
+      "price": 119,
+      "shortDescription": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum dolorem cumque perferendis recusandae, necessitatibus quasi suscipit, quia, excepturi aliquam sapiente nulla. Eum, hic sapiente. Sint magni odio labore corrupti adipisci!",
+      "description": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eos sapiente incidunt error odit aliquam perferendis tempora voluptatibus cupiditate ea porro inventore minus odio at distinctio voluptatem architecto consectetur, deserunt illum! Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eos sapiente incidunt error odit aliquam perferendis tempora voluptatibus cupiditate ea porro inventore minus odio at distinctio voluptatem architecto consectetur, deserunt illum! Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eos sapiente incidunt error odit aliquam perferendis tempora voluptatibus cupiditate ea porro inventore minus odio at distinctio voluptatem architecto consectetur, deserunt illum! Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eos sapiente incidunt error odit aliquam perferendis tempora voluptatibus cupiditate ea porro inventore minus odio at distinctio voluptatem architecto consectetur, deserunt illum!",
+      "categories": "Potter Plants",
+      "size": "small",
+      "newArrivals": true,
+      "salePercent": 0
+    },
+    {
+      "id": 1,
+      "name": "Angel Wing Begonia",
+      "price": 169,
+      "shortDescription": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum dolorem cumque perferendis recusandae, necessitatibus quasi suscipit, quia, excepturi aliquam sapiente nulla. Eum, hic sapiente. Sint magni odio labore corrupti adipisci!",
+      "description": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eos sapiente incidunt error odit aliquam perferendis tempora voluptatibus cupiditate ea porro inventore minus odio at distinctio voluptatem architecto consectetur, deserunt illum! Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eos sapiente incidunt error odit aliquam perferendis tempora voluptatibus cupiditate ea porro inventore minus odio at distinctio voluptatem architecto consectetur, deserunt illum! Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eos sapiente incidunt error odit aliquam perferendis tempora voluptatibus cupiditate ea porro inventore minus odio at distinctio voluptatem architecto consectetur, deserunt illum! Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eos sapiente incidunt error odit aliquam perferendis tempora voluptatibus cupiditate ea porro inventore minus odio at distinctio voluptatem architecto consectetur, deserunt illum!",
+      "categories": "House Plants",
+      "size": "medium",
+      "newArrivals": false,
+      "salePercent": 13
+    },
+    {
+      "id": 2,
+      "name": "African Violet",
+      "price": 150,
+      "shortDescription": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum dolorem cumque perferendis recusandae, necessitatibus quasi suscipit, quia, excepturi aliquam sapiente nulla. Eum, hic sapiente. Sint magni odio labore corrupti adipisci!",
+      "description": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eos sapiente incidunt error odit aliquam perferendis tempora voluptatibus cupiditate ea porro inventore minus odio at distinctio voluptatem architecto consectetur, deserunt illum! Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eos sapiente incidunt error odit aliquam perferendis tempora voluptatibus cupiditate ea porro inventore minus odio at distinctio voluptatem architecto consectetur, deserunt illum! Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eos sapiente incidunt error odit aliquam perferendis tempora voluptatibus cupiditate ea porro inventore minus odio at distinctio voluptatem architecto consectetur, deserunt illum! Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eos sapiente incidunt error odit aliquam perferendis tempora voluptatibus cupiditate ea porro inventore minus odio at distinctio voluptatem architecto consectetur, deserunt illum!",
+      "categories": "Seeds",
+      "size": "large",
+      "newArrivals": true,
+      "salePercent": 0
+    },
+    {
+      "id": 3,
+      "name": "Beach Spider Lily",
+      "price": 130,
+      "shortDescription": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum dolorem cumque perferendis recusandae, necessitatibus quasi suscipit, quia, excepturi aliquam sapiente nulla. Eum, hic sapiente. Sint magni odio labore corrupti adipisci!. ",
+      "description": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eos sapiente incidunt error odit aliquam perferendis tempora voluptatibus cupiditate ea porro inventore minus odio at distinctio voluptatem architecto consectetur, deserunt illum! Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eos sapiente incidunt error odit aliquam perferendis tempora voluptatibus cupiditate ea porro inventore minus odio at distinctio voluptatem architecto consectetur, deserunt illum! Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eos sapiente incidunt error odit aliquam perferendis tempora voluptatibus cupiditate ea porro inventore minus odio at distinctio voluptatem architecto consectetur, deserunt illum! Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eos sapiente incidunt error odit aliquam perferendis tempora voluptatibus cupiditate ea porro inventore minus odio at distinctio voluptatem architecto consectetur, deserunt illum!",
+      "categories": "Potter Plants",
+      "size": "large",
+      "newArrivals": false,
+      "salePercent": 23
+    },
+    {
+      "id": 4,
+      "name": "Blushing Bromeliad",
+      "price": 183,
+      "shortDescription": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum dolorem cumque perferendis recusandae, necessitatibus quasi suscipit, quia, excepturi aliquam sapiente nulla. Eum, hic sapiente. Sint magni odio labore corrupti adipisci!. ",
+      "description": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eos sapiente incidunt error odit aliquam perferendis tempora voluptatibus cupiditate ea porro inventore minus odio at distinctio voluptatem architecto consectetur, deserunt illum! Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eos sapiente incidunt error odit aliquam perferendis tempora voluptatibus cupiditate ea porro inventore minus odio at distinctio voluptatem architecto consectetur, deserunt illum! Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eos sapiente incidunt error odit aliquam perferendis tempora voluptatibus cupiditate ea porro inventore minus odio at distinctio voluptatem architecto consectetur, deserunt illum! Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eos sapiente incidunt error odit aliquam perferendis tempora voluptatibus cupiditate ea porro inventore minus odio at distinctio voluptatem architecto consectetur, deserunt illum!",
+      "categories": "Potter Plants",
+      "size": "medium",
+      "newArrivals": false,
+      "salePercent": 17
+    },
+    {
+      "id": 5,
+      "name": "Aluminum Plant",
+      "price": 138,
+      "shortDescription": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum dolorem cumque perferendis recusandae, necessitatibus quasi suscipit, quia, excepturi aliquam sapiente nulla. Eum, hic sapiente. Sint magni odio labore corrupti adipisci!. ",
+      "description": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eos sapiente incidunt error odit aliquam perferendis tempora voluptatibus cupiditate ea porro inventore minus odio at distinctio voluptatem architecto consectetur, deserunt illum! Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eos sapiente incidunt error odit aliquam perferendis tempora voluptatibus cupiditate ea porro inventore minus odio at distinctio voluptatem architecto consectetur, deserunt illum! Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eos sapiente incidunt error odit aliquam perferendis tempora voluptatibus cupiditate ea porro inventore minus odio at distinctio voluptatem architecto consectetur, deserunt illum! Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eos sapiente incidunt error odit aliquam perferendis tempora voluptatibus cupiditate ea porro inventore minus odio at distinctio voluptatem architecto consectetur, deserunt illum!",
+      "categories": "Potter Plants",
+      "size": "small",
+      "newArrivals": true,
+      "salePercent": 0
+    }
+  ],
+  "slides": [
+    {
+      "id": 0,
+      "title": "Let’s Make a Better Planet",
+      "text": "We are an online plant shop offering a wide range of cheap and trendy plants. Use our plants to create an unique Urban Jungle. Order your favorite plants!"
+    },
+    {
+      "id": 1,
+      "title": "Time for Nature",
+      "text": "We are an online plant shop offering a wide range of cheap and trendy plants. Use our plants to create an unique Urban Jungle. Order your favorite plants!"
+    },
+    {
+      "id": 2,
+      "title": "Keep clean & go green",
+      "text": "We are an online plant shop offering a wide range of cheap and trendy plants. Use our plants to create an unique Urban Jungle. Order your favorite plants!"
+    }
+  ]
+}

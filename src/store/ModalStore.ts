@@ -1,20 +1,12 @@
-import { makeAutoObservable } from 'mobx';
-import { ReactElement } from 'react';
-
-interface IModalState {
-  isOpened: boolean;
-  width: number;
-  component: ReactElement | null;
-}
-
-const initialState = {
-  isOpened: false,
-  width: 600,
-  component: null,
-};
+import { makeAutoObservable } from "mobx";
+import { ReactElement } from "react";
 
 export default class ModalStore {
-  constructor(public state: IModalState = initialState) {
+  public isOpened: boolean = false;
+  public width: number = 600;
+  public component: ReactElement | null = null;
+
+  constructor() {
     makeAutoObservable(this, {}, { autoBind: true });
   }
 
@@ -25,12 +17,12 @@ export default class ModalStore {
     width?: number;
     component: ReactElement;
   }) {
-    this.state.component = component;
-    this.state.width = width || this.state.width;
-    this.state.isOpened = true;
+    this.component = component;
+    this.width = width || this.width;
+    this.isOpened = true;
   }
 
   onClose() {
-    this.state.isOpened = false;
+    this.isOpened = false;
   }
 }
