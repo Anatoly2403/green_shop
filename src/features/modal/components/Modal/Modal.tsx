@@ -1,7 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { observer } from "mobx-react";
 import React, { FC } from "react";
-import { useStore } from "../../store";
+import { useStore } from "../../../../store";
 import classes from "./Modal.module.scss";
 
 const modalsAnimation = {

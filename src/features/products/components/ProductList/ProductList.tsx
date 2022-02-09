@@ -1,14 +1,14 @@
 import React, { FC, useEffect } from "react";
-import { Filter } from "../../../components/ui/Filter";
-import { Grid } from "../../../components/ui/Grid";
-import { Tab, Tabs } from "../../../components/ui/Tabs";
-import { FilterCategories, Product } from "../../../typing";
+import { Filter } from "../../../../components/ui/Filter";
+import { Grid } from "../../../../components/ui/Grid";
+import { Tab, Tabs } from "../../../../components/ui/Tabs";
+import { FilterCategories, Product } from "../../../../typing";
 import { maxBy, minBy, uniqBy } from "lodash";
 import classes from "./ProductList.module.scss";
 import { observer } from "mobx-react";
 import { ProductItem } from "../ProductItem";
-import { Sorter } from "../../../components/ui/Sorter";
-import { useStore } from "../../../store";
+import { Sorter } from "../../../../components/ui/Sorter";
+import { useStore } from "../../../../store";
 import { useNavigate } from "react-router-dom";
 
 const preparePriceRangeData = (products: Product[]) => ({

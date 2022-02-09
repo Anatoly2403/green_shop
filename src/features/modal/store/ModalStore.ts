@@ -1,7 +1,7 @@
 import { makeAutoObservable } from "mobx";
 import { ReactElement } from "react";
 
-export default class ModalStore {
+export class ModalStore {
   public isOpened: boolean = false;
   public width: number = 600;
   public component: ReactElement | null = null;

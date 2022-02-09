@@ -1,8 +1,8 @@
 import React, { FC } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Layout from "../Layout";
-import { Home } from "../../pages/Home";
-import { ProductCard } from "../../features/products/ProductCard";
+import { HomePage } from "../../pages/HomePage";
+import { ProductCard } from "../../features/products/components/ProductCard";
 
 const App: FC = () => {
   return (
@@ -10,7 +10,7 @@ const App: FC = () => {
       <BrowserRouter>
         <Layout>
           <Routes>
-            <Route path="/home" element={<Home />} />
+            <Route path="/home" element={<HomePage />} />
             <Route path="/home/:id" element={<ProductCard />} />
             <Route
               path="/*"

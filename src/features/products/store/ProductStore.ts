@@ -1,10 +1,10 @@
 import { makeAutoObservable } from "mobx";
-import { FilterCategories, Product, Range } from "../typing";
-import { sorter, withPercent } from "../utils";
+import { FilterCategories, Product, Range } from "../../../typing";
+import { sorter, withPercent } from "../../../utils";
 import { filter } from "lodash";
-import { BaseApi } from "../api";
+import { BaseApi } from "../../../api";
 
-export default class ProductStore {
+export class ProductStore {
   public api = new BaseApi();
   private filterTypes: FilterCategories = ["categories", "size"];
   private products: Product[] = [];
