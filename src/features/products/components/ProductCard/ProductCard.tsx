@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { useStore } from "../../../store";
+import { useStore } from "../../../../store";
 import classes from "./ProductItem.module.scss";
 
 interface ProductCardProps {}
@@ -8,10 +8,8 @@ interface ProductCardProps {}
 export const ProductCard: FC<ProductCardProps> = () => {
   const { allProducts } = useStore("productStore");
   const { id } = useParams();
-  const navigate = useNavigate();
 
   const product = allProducts.find((product) => product.id === Number(id));
-
   if (!product) {
     console.log("Selected product not found");
     return null;

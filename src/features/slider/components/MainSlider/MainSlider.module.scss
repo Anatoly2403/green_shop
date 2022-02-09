@@ -1,4 +1,4 @@
-@import '../../../styles/colors.scss';
+@import "src/styles/colors.scss";
 
 .slider__wrapper {
   position: relative;
@@ -21,7 +21,6 @@
     }
 
     &__item {
-      width: 100%;
       min-width: 100%;
       display: flex;
       align-items: center;
@@ -30,7 +29,6 @@
 
     &__dots {
       width: 100%;
-
       display: flex;
       gap: 8px;
       justify-content: center;

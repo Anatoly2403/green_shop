@@ -1,11 +1,9 @@
 import { makeAutoObservable } from "mobx";
-import { BaseApi } from "../api";
-import ModalStore from "./ModalStore";
-import ProductStore from "./ProductStore";
-import SliderStore from "./SliderStore";
+import { ModalStore } from "../features/modal/store";
+import { ProductStore } from "../features/products/store";
+import { SliderStore } from "../features/slider/store";
 
 export default class AppStore {
-  private api = new BaseApi();
   public readonly productStore: ProductStore;
   public readonly modalStore: ModalStore;
   public readonly sliderStore: SliderStore;
@@ -21,8 +19,7 @@ export default class AppStore {
 export const appStore = new AppStore();
 
 export const useStore = <T extends keyof AppStore>(storeName: T) => {
-  // if (!appStore) return console.log("AppStore not found");
-  const store = appStore[storeName];
-
+  const store = appStore[storeName];  
+  if (!store) console.log(`${storeName} not found`);
   return store;
 };

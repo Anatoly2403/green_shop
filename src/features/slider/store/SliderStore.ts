@@ -1,8 +1,8 @@
 import { makeAutoObservable } from "mobx";
-import { BaseApi } from "../api";
-import { Slide } from "../typing";
+import { BaseApi } from "../../../api";
+import { Slide } from "../../../typing";
 
-export default class SliderStore {
+export class SliderStore {
   public api = new BaseApi();
   public slides: Slide[] = [];
 
