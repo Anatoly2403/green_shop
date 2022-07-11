@@ -8,7 +8,7 @@ import { motion } from "framer-motion";
 import { Product } from "../../../../typing";
 
 export interface ProductProps extends Product {
-  onDblClick?: (id: number) => void;
+  onClick?: (id: number) => void;
 }
 
 export const ProductItem: FC<ProductProps> = ({
@@ -17,7 +17,7 @@ export const ProductItem: FC<ProductProps> = ({
   name,
   price,
   salePercent,
-  onDblClick = () => {},
+  onClick = () => {},
 }) => {
   const [over, setOver] = useState<boolean>(false);
 
@@ -26,7 +26,7 @@ export const ProductItem: FC<ProductProps> = ({
       className={classes.product}
       onMouseEnter={() => setOver(true)}
       onMouseLeave={() => setOver(false)}
-      onDoubleClick={() => onDblClick(id)}
+      onClick={() => onClick(id)}
     >
       <div className={classes.product__imgContainer}>
         <motion.div {...(over && { animate: { scale: 0.85, y: "-20px" } })}>

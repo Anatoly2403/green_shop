@@ -81,21 +81,21 @@ export const ProductList: FC = observer(() => {
             <Grid<Product>
               list={filteredProducts}
               renderComponent={ProductItem}
-              onDblClick={handleProductId}
+              onClick={handleProductId}
             />
           </Tab>
           <Tab label="New Arrivals" uniqKey={1}>
             <Grid<Product>
               list={filteredProducts}
               renderComponent={ProductItem}
-              onDblClick={handleProductId}
+              onClick={handleProductId}
             />
           </Tab>
           <Tab label="Sale" uniqKey={2}>
             <Grid<Product>
               list={filteredProducts}
               renderComponent={ProductItem}
-              onDblClick={handleProductId}
+              onClick={handleProductId}
             />
           </Tab>
         </Tabs>
