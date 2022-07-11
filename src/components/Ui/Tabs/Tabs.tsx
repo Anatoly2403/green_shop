@@ -1,7 +1,6 @@
 import React, { FC, ReactElement, ReactNode, useState } from 'react';
 import classes from './Tabs.module.scss';
 import cn from 'classnames';
-import { motion } from 'framer-motion';
 
 type Child =
   | (ReactElement & { props: { label: string; uniqKey: number } })
@@ -16,8 +15,6 @@ interface TabsProps {
 
 export const Tab: FC<{ label: string; uniqKey: number }> = ({
   children,
-  label,
-  uniqKey,
 }) => <>{children}</>;
 
 export const Tabs: FC<TabsProps> = ({

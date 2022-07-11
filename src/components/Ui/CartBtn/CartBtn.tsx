@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import classes from './CartBtn.module.scss';
 import { ReactComponent as Cart } from '../../../assets/icons/Cart.svg';
 
-const CartBtn: FC<{ count?: number; onClick?: () => void }> = ({
+export const CartBtn: FC<{ count?: number; onClick?: () => void }> = ({
   count,
   onClick,
 }) => {
@@ -13,5 +13,3 @@ const CartBtn: FC<{ count?: number; onClick?: () => void }> = ({
     </div>
   );
 };
-
-export default CartBtn;

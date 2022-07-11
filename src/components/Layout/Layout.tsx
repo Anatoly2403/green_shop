@@ -1,20 +1,18 @@
-import React, { FC } from 'react';
+import React, { FC } from "react";
 
-import MainHeader from '../Header';
-import Modal from '../../features/modal/components/Modal';
+import { Header } from "../Header";
+import { Modal } from "../../features/modal/components/Modal";
 
-import classes from './Layout.module.scss';
+import classes from "./Layout.module.scss";
 
-const Layout: FC = ({ children }) => {
+export const Layout: FC = ({ children }) => {
   return (
     <>
       <div className={classes.layout}>
-        <MainHeader />
+        <Header />
         <div className={classes.layout__container}>{children}</div>
       </div>
       <Modal />
     </>
   );
 };
-
-export default Layout;

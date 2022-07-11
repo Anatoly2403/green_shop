@@ -10,7 +10,7 @@ const modalsAnimation = {
   exit: { scale: 0 },
 };
 
-const Modal: FC = () => {
+export const Modal: FC = observer(() => {
   const { width, isOpened, component, onClose } = useStore("modalStore");
   return (
     <AnimatePresence>
@@ -28,6 +28,4 @@ const Modal: FC = () => {
       )}
     </AnimatePresence>
   );
-};
-
-export default observer(Modal);
+});

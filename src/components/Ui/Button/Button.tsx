@@ -9,7 +9,7 @@ interface BtnProps {
   className?: string;
 }
 
-const Button: FC<BtnProps> = ({
+export const Button: FC<BtnProps> = ({
   label,
   onClick,
   icon,
@@ -27,5 +27,3 @@ const Button: FC<BtnProps> = ({
     </button>
   );
 };
-
-export default Button;
