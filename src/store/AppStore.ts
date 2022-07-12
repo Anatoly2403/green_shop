@@ -8,18 +8,26 @@ export default class AppStore {
   public readonly modalStore: ModalStore;
   public readonly sliderStore: SliderStore;
 
-  constructor() {
+  constructor(
+    productStore: ProductStore,
+    modalStore: ModalStore,
+    sliderStore: SliderStore
+  ) {
     makeAutoObservable(this, {}, { deep: true });
-    this.productStore = new ProductStore();
-    this.modalStore = new ModalStore();
-    this.sliderStore = new SliderStore();
+    this.productStore = productStore;
+    this.modalStore = modalStore;
+    this.sliderStore = sliderStore;
   }
 }
 
-export const appStore = new AppStore();
+export const appStore = new AppStore(
+  new ProductStore(),
+  new ModalStore(),
+  new SliderStore()
+);
 
 export const useStore = <T extends keyof AppStore>(storeName: T) => {
-  const store = appStore[storeName];  
+  const store = appStore[storeName];
   if (!store) console.log(`${storeName} not found`);
   return store;
 };

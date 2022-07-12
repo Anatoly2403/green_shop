@@ -24,7 +24,7 @@ export const Header: FC = () => {
           <li>
             <NavLink to='/'>Home</NavLink>
           </li>
-          <li>
+          {/* <li>
             <NavLink to='/shop'>Shop</NavLink>
           </li>
           <li>
@@ -32,7 +32,7 @@ export const Header: FC = () => {
           </li>
           <li>
             <NavLink to='/blogs'>Blogs</NavLink>
-          </li>
+          </li> */}
         </ul>
       </nav>
       <div className={classes.header__headerBtnGroup}>

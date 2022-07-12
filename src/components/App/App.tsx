@@ -6,23 +6,18 @@ import { ProductCard } from "../../features/products/components/ProductCard";
 
 const App: FC = () => {
   return (
-    <div>
-      <BrowserRouter>
-        <Layout>
-          <Routes>
-            <Route path='/home' element={<HomePage />} />
-            <Route path='/home/:id' element={<ProductCard />} />
-            <Route
-              path='/*'
-              element={
-                <div style={{ textAlign: "center" }}>Page not found</div>
-              }
-            />
-            <Route path='/' element={<Navigate to='/home' replace />} />
-          </Routes>
-        </Layout>
-      </BrowserRouter>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path='/' element={<Layout />}>
+          <Route index element={<HomePage />} />
+          <Route path='products/:id' element={<ProductCard />} />
+          <Route
+            path='*'
+            element={<div style={{ textAlign: "center" }}>Page not found</div>}
+          />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 };
 

@@ -42,23 +42,15 @@ export const ProductList: FC = observer(() => {
     setFilter,
     setSort,
     setPriceRange,
-    setProductId,
     setActiveTabKey,
     fetchProducts,
     productsWithFilter,
     filteredProducts,
   } = useStore("productStore");
 
-  const navigate = useNavigate();
-
   useEffect(() => {
     fetchProducts();
   }, []);
-
-  const handleProductId = (id: number) => {
-    setProductId(id);
-    navigate(`${id}`);
-  };
 
   return (
     <div className={classes.products}>
@@ -77,25 +69,22 @@ export const ProductList: FC = observer(() => {
           onChangeTab={setActiveTabKey}
           sortComponent={<Sorter sortList={sorterOptions} onClick={setSort} />}
         >
-          <Tab label="All Plants" uniqKey={0}>
+          <Tab label='All Plants' uniqKey={0}>
             <Grid<Product>
               list={filteredProducts}
               renderComponent={ProductItem}
-              onClick={handleProductId}
             />
           </Tab>
-          <Tab label="New Arrivals" uniqKey={1}>
+          <Tab label='New Arrivals' uniqKey={1}>
             <Grid<Product>
               list={filteredProducts}
               renderComponent={ProductItem}
-              onClick={handleProductId}
             />
           </Tab>
-          <Tab label="Sale" uniqKey={2}>
+          <Tab label='Sale' uniqKey={2}>
             <Grid<Product>
               list={filteredProducts}
               renderComponent={ProductItem}
-              onClick={handleProductId}
             />
           </Tab>
         </Tabs>

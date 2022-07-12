@@ -6,10 +6,9 @@ import { ReactComponent as Cart } from "../../../../assets/icons/Cart.svg";
 import { ReactComponent as Search } from "../../../../assets/icons/Search.svg";
 import { motion } from "framer-motion";
 import { Product } from "../../../../typing";
+import { NavLink, useNavigate } from "react-router-dom";
 
-export interface ProductProps extends Product {
-  onClick?: (id: number) => void;
-}
+export interface ProductProps extends Product {}
 
 export const ProductItem: FC<ProductProps> = ({
   id,
@@ -17,7 +16,6 @@ export const ProductItem: FC<ProductProps> = ({
   name,
   price,
   salePercent,
-  onClick = () => {},
 }) => {
   const [over, setOver] = useState<boolean>(false);
 
@@ -26,18 +24,18 @@ export const ProductItem: FC<ProductProps> = ({
       className={classes.product}
       onMouseEnter={() => setOver(true)}
       onMouseLeave={() => setOver(false)}
-      onClick={() => onClick(id)}
     >
       <div className={classes.product__imgContainer}>
         <motion.div {...(over && { animate: { scale: 0.85, y: "-20px" } })}>
-          {image ? (
-            <img src={require(image)} alt="product_img" />
-          ) : (
-            <ImageNotFound color="#46a3584d" />
-          )}
+          <NavLink to={`/products/${id}`}>
+            {image ? (
+              <img src={require(image)} alt='product_img' />
+            ) : (
+              <ImageNotFound color='#46a3584d' />
+            )}
+          </NavLink>
         </motion.div>
 
-        {/* TODO добавить обработчик */}
         {over && (
           <motion.div>
             <Cart width={18} height={18} />
